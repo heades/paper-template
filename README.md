@@ -1,4 +1,4 @@
-A Paper Template using Ott and LateX
+A Paper Template using Ott and LaTeX
 ---
 
 The point of this template is to start a paper using Ott and LaTeX
