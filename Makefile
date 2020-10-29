@@ -4,7 +4,7 @@ OTT = ott
 
 OTT_FLAGS_WRAP := -tex_show_meta false -picky_multiple_parses false
 OTT_FLAGS_NO_WRAP := -tex_wrap false -tex_show_meta false -picky_multiple_parses false
-OTT_FLAGS := $(OTT_FLAGS_WRAP)
+OTT_FLAGS := $(OTT_FLAGS_NO_WRAP)
 
 # Name of the note:
 Name := paper
