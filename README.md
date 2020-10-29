@@ -15,7 +15,7 @@ Name := paper
 OTTPrefix := spec
 ```
 
-The first names the LaTex files, and the second names the language and
+The first names the LaTeX files, and the second names the language and
 prefixes all Ott commands with `$(OTTPrefix)`.  I usually set the
 latter to my language name.
 
