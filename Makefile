@@ -22,7 +22,7 @@ OTT_FILES = introduction.tex
 
 FILES := abstract.tex \
 	 $(Name).tex \
-	 $(OTT_FILES)
+	 Makefile
 
 OTT_TARGETS := $(subst .tex,-ottput.tex,$(OTT_FILES))
 OTT_FILTER := $(subst .tex,.tex ,$(addprefix -tex_filter ,$(join $(OTT_FILES), $(OTT_TARGETS))))
@@ -35,7 +35,7 @@ $(OTTGen) : $(OTTFile)
 $(OTT_TARGETS) : $(OTT_FILES) $(OTTGen) 
 	$(OTT) -i $(OTTFile) $(OTT_FLAGS) $(OTT_FILTER)
 
-$(PDF) : $(FILES) Makefile 
+$(PDF) : $(FILES) $(OTT_TARGETS)
 	$(PDFLATEX) -jobname=$(Name) $(Name).tex
 
 clean :
