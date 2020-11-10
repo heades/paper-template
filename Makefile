@@ -30,10 +30,10 @@ OTT_FILTER := $(subst .tex,.tex ,$(addprefix -tex_filter ,$(join $(OTT_FILES), $
 all : $(PDF)
 
 $(OTTGen) : $(OTTFile)
-	$(OTT) -i $(OTTFile) -o $(OTTGen) $(OTT_FLAGS)
+	$(OTT) -i $(OTTFile) -o $(OTTGen) $(OTT_FLAGS) -tex_name_prefix $(OTTPrefix)
 
 $(OTT_TARGETS) : $(OTT_FILES) $(OTTGen) 
-	$(OTT) -i $(OTTFile) $(OTT_FLAGS) $(OTT_FILTER)
+	$(OTT) -i $(OTTFile) $(OTT_FLAGS) $(OTT_FILTER) -tex_name_prefix $(OTTPrefix)
 
 $(PDF) : $(FILES) $(OTT_TARGETS)
 	$(PDFLATEX) -jobname=$(Name) $(Name).tex
