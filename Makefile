@@ -40,4 +40,5 @@ $(PDF) : $(FILES) $(OTT_TARGETS)
 
 clean :
 	rm -f *.aux *.dvi *.ps *.log *-ott.tex *-output.tex *.bbl *.blg \
-	      *.rel note.pdf *~ *.vtc *.out *.spl *-inc.tex  *-ott.tex *-ottput.tex
+	      *.rel note.pdf *~ *.vtc *.out *.spl *-inc.tex  *-ott.tex *-ottput.tex \
+	      *.toc
