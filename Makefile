@@ -2,14 +2,15 @@ PDFLATEX = xelatex
 BIBTEX = bibtex
 OTT = ott
 
-OTT_FLAGS_WRAP := -tex_show_meta false -picky_multiple_parses false
-OTT_FLAGS_NO_WRAP := -tex_wrap false -tex_show_meta false -picky_multiple_parses false
-OTT_FLAGS := $(OTT_FLAGS_NO_WRAP)
-
 # Name of the note:
 Name := paper
 # Name of the language (ott spec name):
 OTTPrefix := spec
+
+OTT_FLAGS_WRAP := -tex_show_meta false -picky_multiple_parses false -tex_name_prefix $(OTTPrefix)
+OTT_FLAGS_NO_WRAP := -tex_wrap false -tex_show_meta false -picky_multiple_parses false -tex_name_prefix $(OTTPrefix)
+OTT_FLAGS := $(OTT_FLAGS_NO_WRAP)
+
 TexFileName := $(Name)
 OTTFileName := $(OTTPrefix)
 OTTFile := $(OTTFileName).ott
@@ -20,7 +21,8 @@ PDF := $(TexFileName).pdf
 
 OTT_FILES = introduction.tex	    
 
-FILES := abstract.tex \
+FILES := $(OTT_FILES) \
+	 abstract.tex \
 	 $(TexFileName).tex \
 	 Makefile
 
@@ -30,10 +32,10 @@ OTT_FILTER := $(subst .tex,.tex ,$(addprefix -tex_filter ,$(join $(OTT_FILES), $
 all : $(PDF)
 
 $(OTTGen) : $(OTTFile)
-	$(OTT) -i $(OTTFile) -o $(OTTGen) $(OTT_FLAGS) -tex_name_prefix $(OTTPrefix)
+	$(OTT) $(OTT_FLAGS) -i $(OTTFile) -o $(OTTGen)
 
 $(OTT_TARGETS) : $(OTT_FILES) $(OTTGen) 
-	$(OTT) -i $(OTTFile) $(OTT_FLAGS) $(OTT_FILTER) -tex_name_prefix $(OTTPrefix)
+	$(OTT) $(OTT_FLAGS) $(OTT_FILTER) -i $(OTTFile) 
 
 $(PDF) : $(FILES) $(OTT_TARGETS)
 	$(PDFLATEX) -jobname=$(TexFileName) $(TexFileName).tex
