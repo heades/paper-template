@@ -21,7 +21,7 @@ PDF := $(TexFileName).pdf
 OTT_FILES = introduction.tex	    
 
 FILES := abstract.tex \
-	 $(Name).tex \
+	 $(TexFileName).tex \
 	 Makefile
 
 OTT_TARGETS := $(subst .tex,-ottput.tex,$(OTT_FILES))
@@ -36,7 +36,7 @@ $(OTT_TARGETS) : $(OTT_FILES) $(OTTGen)
 	$(OTT) -i $(OTTFile) $(OTT_FLAGS) $(OTT_FILTER) -tex_name_prefix $(OTTPrefix)
 
 $(PDF) : $(FILES) $(OTT_TARGETS)
-	$(PDFLATEX) -jobname=$(Name) $(Name).tex
+	$(PDFLATEX) -jobname=$(TexFileName) $(TexFileName).tex
 
 clean :
 	rm -f *.aux *.dvi *.ps *.log *-ott.tex *-output.tex *.bbl *.blg \
