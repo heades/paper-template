@@ -1,1 +1,7 @@
 *.pdf
+
+introduction-ottput.tex
+*.aux
+*.log
+*.out
+spec-inc.tex

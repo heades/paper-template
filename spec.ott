@@ -4,7 +4,41 @@ embed
                  \usepackage{relsize} }}
 
 metavar termvar, x, y , z, f  ::=
-metavar semiringEl, r , s ::=
-metavar type, T , S ::=
+metavar grade, r , s ::=
 indexvar i , j ::=
 
+grammar
+
+type, A, B, C :: 'Ty_' ::= 
+  | Base       :: :: Base
+  {{tex \mathsf{B} }}
+  | A -> B     :: :: Fun
+  | ( A , B )  :: :: Pairs
+  | Mon ( r , A ) :: :: Monad
+  {{tex \mathsf{Mon}_{[[r]]} [[A]] }}
+
+term, t :: 'Term_' ::=
+  | x                         :: :: Var
+  | x . t                     :: :: Fun
+  {{tex \lambda [[x]].[[t]] }}
+  | t1 t2                     :: :: App
+  | ( t1 , t2 )               :: :: Pairs
+  | case ( t1 ,  x . y . t2 ) :: :: PMatch
+  {{tex \mathsf{case}\,[[t1]]\,\mathsf{of}\, ( [[x]] , [[y]] ) \Rightarrow [[t2]] }}
+  | return ( t )              :: :: Ret
+  | bind ( t1 , t2 )          :: :: Bind
+
+ ctx, G {{tex \Gamma }} :: 'Ctx_' ::=
+  | empty :: :: Empty
+  | x : A :: :: El
+  | G1 , G2 :: :: Ext
+
+terminals :: 'terminals_' ::=
+  | ->    :: :: RArrow
+  {{tex \rightarrow }}
+  | return :: :: Ret
+  {{tex \mathsf{return} }}
+  | bind :: :: Bind
+  {{tex \mathsf{bind} }}
+  | empty :: :: Empty
+  {{tex \emptyset }}
